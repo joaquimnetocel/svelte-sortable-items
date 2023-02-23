@@ -1,6 +1,15 @@
+<!-- markdownlint-disable MD033 -->
+
 # svelte-sortable-items
 
+![GITHUB VERSION](https://img.shields.io/github/package-json/v/joaquimnetocel/svelte-sortable-items?label=github%20version&logo=github&color=lightgray) ![NPM VERSION](https://img.shields.io/npm/v/svelte-sortable-items?color=red&logo=npm&label=npm%20version) ![NPM Downloads](https://img.shields.io/npm/dw/svelte-sortable-items?color=red&label=npm%20downloads&logo=npm) ![NPM License](https://img.shields.io/npm/l/svelte-sortable-items?color) [![Twitter](https://img.shields.io/twitter/follow/:twitterHandle.svg?style=social&label=@joaquimnetocel)](https://twitter.com/joaquimnetocel)
+
 svelte-sortable-items is a svelte/sveltekit package to create sortable drag-and-drop items. This package allows you to relate a javascript array to sortable HTML elements.
+
+<p style="display:flex;align-items:center;justify-content:center;gap:30px;">
+  <img src="./table.gif" />
+  <img src="./skeleton.gif" />
+</p>
 
 ## WHY ANOTHER SVELTE PACKAGE FOR SORTING?
 
@@ -14,8 +23,8 @@ svelte-sortable-items is a svelte/sveltekit package to create sortable drag-and-
 
 ## DEMOS
 
-- [REPL: BOOTSTRAP 5 TABLE EXAMPLE](????)
-- [REPL: SKELETON EXAMPLE](???)
+- [REPL: BOOTSTRAP 5 TABLE EXAMPLE](https://svelte.dev/repl/b6ac15d832194ccca959961269434d7f)
+- [REPL: SKELETON EXAMPLE](https://svelte.dev/repl/f00d587a19af40899cdfccfb9a733f23)
 
 ## INSTALLATION
 
@@ -60,7 +69,7 @@ npm install svelte-sortable-items
         { id: 3, name: 'Jonas', age: 56 },
         { id: 4, name: 'Mary', age: 76 }
     ];
-    let numberHoveredItem: number;
+    let numberHoveredItem;
     /////
 </script>
 
@@ -89,7 +98,7 @@ npm install svelte-sortable-items
 </style>
 ```
 
-- BOOTTRAP 5 TABLE EXAMPLE:
+- BOOTSTRAP 5 TABLE EXAMPLE:
 
 ```svelte
 <script>
