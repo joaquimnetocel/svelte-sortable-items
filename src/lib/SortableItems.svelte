@@ -44,7 +44,7 @@
 	on:dragstart={(parEvent) => functionDragStart(parEvent, propItemNumber)}
 	on:drop|preventDefault={(event) => functionDrop(event, propItemNumber)}
 	on:dragover|preventDefault={() => false}
-	on:dragenter={() => (propHoveredItemNumber = propItemNumber)}
+	on:dragenter|preventDefault={() => (propHoveredItemNumber = propItemNumber)}
 >
 	<slot />
 </span>

@@ -19,6 +19,7 @@ svelte-sortable-items is a svelte/sveltekit package to create sortable drag-and-
 
 - NON-OPINIONATED STYLING.
 - NON-OPINIONATED HTML STRUCTURE.
+- WORKS ON MOBILE. YOU JUST HAVE TO LOAD [svelte-drag-drop-touch](https://github.com/rozek/svelte-drag-drop-touch)
 - TYPESCRIPT SUPPORT.
 
 ## DEMOS
@@ -73,6 +74,12 @@ npm install svelte-sortable-items
     /////
 </script>
 
+<svelte:head>
+    <!-- MAKE IT WORK ON MOBILE DEVICES -->
+    <script src="https://unpkg.com/svelte-drag-drop-touch"></script>
+    <!---->
+</svelte:head>
+
 <p>MOVE THE <MoveIcon propSize={12} /> ICON TO REORDER ELEMENTS.</p>
 
 {#each arrayUsers as currentUser, numberCounter (currentUser.id)}
@@ -116,16 +123,19 @@ npm install svelte-sortable-items
     /////
 </script>
 
-<!-- BOOTSTRAP -->
 <svelte:head>
+    <!-- MAKE IT WORK ON MOBILE DEVICES -->
+    <script src="https://unpkg.com/svelte-drag-drop-touch"></script>
+    <!---->
+    <!-- BOOTSTRAP -->
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
         rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
         crossorigin="anonymous"
     />
+    <!---->
 </svelte:head>
-<!---->
 
 <div class="px-4">
     <div>MOVE THE TABLE ROWS TO REORDER:</div>

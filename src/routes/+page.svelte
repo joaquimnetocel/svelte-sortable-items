@@ -13,6 +13,12 @@
 	/////
 </script>
 
+<svelte:head>
+	<!-- MAKE IT WORK ON MOBILE DEVICES -->
+	<script src="https://unpkg.com/svelte-drag-drop-touch"></script>
+	<!---->
+</svelte:head>
+
 <p>MOVE THE <MoveIcon propSize={12} /> ICON TO REORDER ELEMENTS.</p>
 
 {#each arrayUsers as currentUser, numberCounter (currentUser.id)}
