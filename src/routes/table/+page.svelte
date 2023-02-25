@@ -29,6 +29,7 @@
 
 <div class="px-4">
 	<div>MOVE THE TABLE ROWS TO REORDER:</div>
+
 	<table class="table table-striped w-auto">
 		<thead>
 			<tr>
@@ -71,6 +72,8 @@
 			{/each}
 		</tbody>
 	</table>
+
+	<p>{JSON.stringify(arrayUsers)}</p>
 </div>
 
 <style>

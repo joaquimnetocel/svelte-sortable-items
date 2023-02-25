@@ -36,6 +36,8 @@
 	</div>
 {/each}
 
+<p>{JSON.stringify(arrayUsers)}</p>
+
 <style>
 	.classHovered {
 		background-color: lightblue;

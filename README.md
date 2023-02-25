@@ -97,6 +97,8 @@ npm install svelte-sortable-items
     </div>
 {/each}
 
+<p>{JSON.stringify(arrayUsers)}</p>
+
 <style>
     .classHovered {
         background-color: lightblue;
@@ -181,6 +183,9 @@ npm install svelte-sortable-items
             {/each}
         </tbody>
     </table>
+
+    <p>{JSON.stringify(arrayUsers)}</p>
+
 </div>
 
 <style>
