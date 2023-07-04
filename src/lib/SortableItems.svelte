@@ -39,6 +39,7 @@
 </script>
 
 <span
+	role="list"
 	class={$$restProps.class || ''}
 	draggable="true"
 	on:dragstart={(parEvent) => functionDragStart(parEvent, propItemNumber)}
