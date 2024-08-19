@@ -1,6 +1,27 @@
 {
 	"name": "svelte-sortable-items",
-	"version": "0.0.1",
+	"version": "1.0.0",
+	"description": "svelte-sortable-items is a svelte/sveltekit package to create sortable drag-and-drop items. This package allows you to relate a javascript array to sortable HTML elements.",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/joaquimnetocel/svelte-sortable-items.git"
+	},
+	"bugs": {
+		"url": "https://github.com/joaquimnetocel/svelte-sortable-items/issues"
+	},
+	"keywords": [
+		"drag-and-drop",
+		"reorder",
+		"reordering",
+		"sortable-lists",
+		"sortable-table",
+		"table-sorting",
+		"svelte",
+		"sveltekit",
+		"svelte5"
+	],
+	"author": "Joaquim Neto <joaquim.neto.cel@gmail.com>",
+	"license": "ISC",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
