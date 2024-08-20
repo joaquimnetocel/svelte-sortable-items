@@ -1,58 +1,118 @@
-# create-svelte
+# svelte-sortable-items
 
-Everything you need to build a Svelte library, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+![GITHUB VERSION](https://img.shields.io/github/package-json/v/joaquimnetocel/svelte-sortable-items?label=github%20version&logo=github&color=lightgray) ![NPM VERSION](https://img.shields.io/npm/v/svelte-sortable-items?color=red&logo=npm&label=npm%20version) ![NPM Downloads](https://img.shields.io/npm/dw/svelte-sortable-items?color=red&label=npm%20downloads&logo=npm) ![NPM License](https://img.shields.io/npm/l/svelte-sortable-items?color) [![Twitter](https://img.shields.io/twitter/follow/:twitterHandle.svg?style=social&label=@joaquimnetocel)](https://twitter.com/joaquimnetocel)
 
-Read more about creating a library [in the docs](https://kit.svelte.dev/docs/packaging).
+svelte-sortable-items is a svelte/sveltekit package to create sortable drag-and-drop items. This package allows you to relate a javascript array to sortable HTML elements.
 
-## Creating a project
+<p style="display:flex;align-items:center;justify-content:center;gap:30px;">
+  <img alt='TABLE' src="./table.gif" />
+  <img alt='SKELETON' src="./skeleton.gif" />
+</p>
 
-If you're seeing this, you've probably already done this step. Congrats!
+## VERSIONS
+
+- VERSION 1.0.0 OR ABOVE WORKS WITH SVELTE 5 ONLY (NEWER AND RECOMMENDED VERSIONS WITH IMPROVEMENTS!)
+- PREVIOUS VERSIONS WORKS WITH SVELTE 3, 4 AND 5.
+
+## WHY ANOTHER SVELTE PACKAGE FOR SORTING?
+
+**svelte-sorting-items** differs from other svelte sorting packages by not committing to a specific html structure (like "ul/li" lists). Furthermore, it promotes sorting from the child elements only, instead of sorting the children of a parent element. This allows a non-opinionated structure/styling and, consequently, the ordering of more flexible structures, such as the lines of a table for example.
+
+## FEATURES
+
+- NON-OPINIONATED STYLING.
+- NON-OPINIONATED HTML STRUCTURE.
+- WORKS ON MOBILE. YOU JUST HAVE TO LOAD [svelte-drag-drop-touch](https://github.com/rozek/svelte-drag-drop-touch)
+- TYPESCRIPT SUPPORT.
+
+## DEMOS
+
+- [REPL: BOOTSTRAP 5 TABLE EXAMPLE](https://svelte.dev/repl/b6ac15d832194ccca959961269434d7f)
+- [REPL: BASIC EXAMPLE](https://svelte.dev/repl/f00d587a19af40899cdfccfb9a733f23)
+
+## INSTALLATION
 
 ```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
+npm install svelte-sortable-items
 ```
 
-## Developing
+## BASIC EXAMPLE
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+```svelte
+<script lang="ts">
+	import { MoveIcon, SortableItem } from 'svelte-sortable-items';
+	import { flip } from 'svelte/animate';
+
+	let stateUsers = $state([
+		{ id: 1, name: 'John', age: 45 },
+		{ id: 2, name: 'Mark', age: 33 },
+		{ id: 3, name: 'Jonas', age: 56 },
+		{ id: 4, name: 'Mary', age: 76 },
+	]);
+	let stateHoveredItem = $state<number>(-1);
+</script>
+
+<svelte:head>
+	<!-- MAKE IT WORK ON MOBILE DEVICES -->
+	<script src="https://unpkg.com/svelte-drag-drop-touch"></script>
+	<!---->
+</svelte:head>
+
+<p>MOVE THE <MoveIcon propSize={12} /> ICON TO REORDER ELEMENTS.</p>
+
+{#each stateUsers as currentUser, numberCounter (currentUser.id)}
+	<div animate:flip>
+		<SortableItem
+			propItemNumber={numberCounter}
+			bind:propData={stateUsers}
+			bind:propHoveredItemNumber={stateHoveredItem}
+		>
+			<div class:classHovered={stateHoveredItem === numberCounter}>
+				<MoveIcon propSize={12} />
+				{currentUser.name}
+			</div>
+		</SortableItem>
+	</div>
+{/each}
+
+<p>{JSON.stringify(stateUsers)}</p>
+
+<style>
+	.classHovered {
+		background-color: lightblue;
+		color: white;
+	}
+</style>
+```
+
+## MORE EXAMPLES
+
+To run the examples from `/src/routes`:
 
 ```bash
+git clone https://github.com/joaquimnetocel/svelte-sortable-items.git
+cd svelte-sortable-items
+npm install
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-Everything inside `src/lib` is part of your library, everything inside `src/routes` can be used as a showcase or preview app.
+## COMPONENT STRUCTURE
 
-## Building
+- `SortableItem`: A component to create sortable html elements.
+- `MoveIcon`: An icon commonly used to sort items.
 
-To build your library:
+## PROPS
 
-```bash
-npm run package
-```
+- PROPS OF `SortableItem`:
 
-To create a production version of your showcase app:
+| PROP                               | DESCRIPTION                                                                   | TYPE        | REQUIRED | DEFAULT     |
+| ---------------------------------- | ----------------------------------------------------------------------------- | ----------- | -------- | ----------- |
+| `propData` (bindable)              | AN ARRAY WITH THE DATA.                                                       | `unknown[]` | YES      | -           |
+| `propItemNumber`                   | THE INITIAL POSITION OF THE ITEM.                                             | `number`    | YES      | `undefined` |
+| `propHoveredItemNumber` (bindable) | THE HOVERED ITEM NUMBER (GENERALY USED TO DO SPECIFIC STYLING WHEN HOVERING). | `number`    | NO       | `-1`        |
 
-```bash
-npm run build
-```
+- PROPS OF `MoveIcon`:
 
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
-
-## Publishing
-
-Go into the `package.json` and give your package the desired name through the `"name"` option. Also consider adding a `"license"` field and point it to a `LICENSE` file which you can create from a template (one popular option is the [MIT license](https://opensource.org/license/mit/)).
-
-To publish your library to [npm](https://www.npmjs.com):
-
-```bash
-npm publish
-```
+| PROP       | DESCRIPTION           | TYPE     | REQUIRED | DEFAULT |
+| ---------- | --------------------- | -------- | -------- | ------- |
+| `propSize` | SIZE OF THE SORT ICON | `number` | NO       | 12      |
