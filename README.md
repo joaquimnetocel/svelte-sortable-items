@@ -110,6 +110,7 @@ npm run dev
 | `propData` (bindable)              | AN ARRAY WITH THE DATA.                                                       | `unknown[]` | YES      | -           |
 | `propItemNumber`                   | THE INITIAL POSITION OF THE ITEM.                                             | `number`    | YES      | `undefined` |
 | `propHoveredItemNumber` (bindable) | THE HOVERED ITEM NUMBER (GENERALY USED TO DO SPECIFIC STYLING WHEN HOVERING). | `number`    | NO       | `-1`        |
+| `propIsImageHidden` | MAKE THE GHOST IMAGE WHEN DRAGGING TRANSPARENT | `boolean`    | NO       | `false`        |
 
 - PROPS OF `MoveIcon`:
 
