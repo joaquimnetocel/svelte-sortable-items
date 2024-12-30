@@ -5,12 +5,14 @@
 		propItemNumber,
 		propData = $bindable(),
 		propHoveredItemNumber = $bindable(-1), // ANY NON-INTEGER NUMBER
+		propIsImageHidden = false,
 		children,
 		...propRest
 	}: {
 		propItemNumber: number;
 		propData: unknown[];
 		propHoveredItemNumber?: number;
+		propIsImageHidden?: boolean;
 		children: Snippet;
 	} = $props();
 
@@ -42,6 +44,13 @@
 		if (parEvent.dataTransfer === null) return;
 		parEvent.dataTransfer.effectAllowed = 'move';
 		parEvent.dataTransfer.dropEffect = 'move';
+		if (propIsImageHidden) {
+			const transparentImage = new Image();
+			// https://stackoverflow.com/a/40923520
+			transparentImage.src =
+				'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+			parEvent.dataTransfer.setDragImage(transparentImage, 0, 0);
+		}
 		const start = parIndex;
 		parEvent.dataTransfer.setData('text/plain', start.toString());
 	};
